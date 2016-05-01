@@ -15,7 +15,7 @@ public:
 	Graph(int);
 	~Graph();
 	void add_edge(int, int);
-    friend std::ostream& operator<<(std::ostream&, const Graph&);
+	friend std::ostream& operator<<(std::ostream&, const Graph&);
 };
 
 #endif
