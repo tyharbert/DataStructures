@@ -1,56 +1,28 @@
 // Tyler Harbert May 2016
 // This class represents an adjacency list
-// class representation of a graph
+// class representation of a weighted graph
 
 #ifndef ADJLIST_HPP
 #define ADJLIST_HPP
 
-#include "node.hpp"
+#include "uadjlist.hpp"
 
 // Graph
-// this class represents a generic graph
+// this class represents an unweighted graph
 template <typename W>
-class Graph {
-private:
-	Vertex** verticies;
-	int size;
-
+class Graph: public uGraph {
 public:
-	Graph(int);
-	~Graph();
-	void add_edge(int v1, int v2, W weight = 0, bool directional = true);
+	Graph(int size): uGraph(size) {}
+	virtual ~Graph() {}
+	void add_edge(int v1, int v2, W weight, bool directional = true);
+	void add_edge(int v1, int v2 , bool d) { add_edge(v1, v2, 0, d); }
 	template <typename W1>
 	friend std::ostream& operator<<(std::ostream&, const Graph<W1>&);
 };
 
-// Graph constructor
-template <typename W>
-Graph<W>::Graph(int s): size(s) {
-	verticies = new Vertex*[s];
-
-	for (int i=0; i < s; i++)
-		verticies[i] = new Vertex();
-}
-
-// Graph destructor
-template <typename W>
-Graph<W>::~Graph() {
-	Node* n, d;
-
-	// loop through all verticies
-	for (int i=0; i < size; i++) {
-		// the destructor is set up to delete a 
-		// full chain of Node objects recursively
-		delete verticies[i];
-	}
-
-	delete verticies;
-}
-
 // add_edge
-// this function adds an edge it can add a weighted edge if
-// a positive value is supplied and it can add both directional
-// and undirectional edges
+// this function adds a weighted edge
+// and it can be directional or undirectional
 template <typename W>
 void Graph<W>::add_edge(int v1, int v2, W weight, bool directional) {
 	Node* n;
@@ -62,10 +34,7 @@ void Graph<W>::add_edge(int v1, int v2, W weight, bool directional) {
 		n = n->get_next();
 
 	// add weighted edge if weight supplied
-	if (weight > 0)
-		n->set_next(new Edge<W>(nullptr, v2, weight));
-	else
-		n->set_next(new uEdge(nullptr, v2));
+	n->set_next(new Edge<W>(nullptr, v2, weight));
 
 	// recursively add opposite edge
 	if (!directional)
@@ -76,25 +45,7 @@ void Graph<W>::add_edge(int v1, int v2, W weight, bool directional) {
 // this prints a graph in adjacency list form
 template <typename W>
 std::ostream& operator<<(std::ostream& os, const Graph<W>& g) {
-	Node* n;
-
-	// loop through all verticies
-	for (int i = 0; i < g.size; i++) {
-		n = g.verticies[i]; // set to vertex
-
-		// print vertex
-		os << *n << i;
-		n = n->get_next();
-		
-		// loop through edges
-		while (n) {
-			os << " -> " << *n;
-			n = n->get_next();
-		}
-		os << std::endl;
-	}
-
-    return os;
+    return os << (uGraph&)g; // call uGraph ostream 
 }
 
 #endif
