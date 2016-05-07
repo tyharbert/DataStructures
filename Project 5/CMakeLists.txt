@@ -3,18 +3,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated -Wno-write-strings")
 cmake_minimum_required(VERSION 2.8.11 FATAL_ERROR)
 
 #project declarations
-project(graphlib CXX)
 project(test1 CXX)
-
-#add library .cpp files to a GLOB
-file(GLOB graphlib_src
-    libraries/*.cpp
-)
-
-# add library
-add_library(graphlib STATIC
-    ${graphlib_src}
-)
 
 include_directories(
 	libraries
@@ -22,6 +11,3 @@ include_directories(
 
 # test program executables
 add_executable(test1 tests/test1.cpp)
-
-# link libraries
-target_link_libraries(test1 LINK_PUBLIC graphlib)
