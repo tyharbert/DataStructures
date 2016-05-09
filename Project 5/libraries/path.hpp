@@ -21,7 +21,7 @@ public:
 	}
 	~Path() { delete[] path; }
 	void add(int source, int dest);
-	std::vector<int> get(int source, int dest);
+	std::vector<int> get(int dest);
 	friend std::ostream& operator<<(std::ostream&, const Path&);
 };
 
@@ -34,15 +34,13 @@ inline void Path::add(int source, int dest) {
 
 // this gets the shortest path from
 // source to dest
-std::vector<int> Path::get(int source, int dest) {
+std::vector<int> Path::get(int dest) {
 	std::vector<int> v;
 
-	while (dest != source) {
+	while (dest != -1) {
 		v.push_back(dest);
 		dest = path[dest];
 	}
-
-	v.push_back(source);
 
 	std::reverse(v.begin(), v.end());
 

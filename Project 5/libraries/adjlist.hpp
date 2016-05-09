@@ -92,7 +92,7 @@ std::vector<int> Graph<W>::dijkstra(int source, int dest) {
 		}
 	}
 
-	return path.get(source, dest);
+	return path.get(dest);
 }
 
 // min_vertex

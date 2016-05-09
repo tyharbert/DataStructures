@@ -15,7 +15,7 @@ int main()
 	g1.add_edge(4, 5, 1);
 	g1.add_edge(5, 1, 6);
 
-	std::vector<int> path = g1.dijkstra(0, 5);
+	std::vector<int> path = g1.dijkstra(0, 3);
 
 	for (int i=0; i < path.size(); i++)
 		std::cout << path[i] << " ";
