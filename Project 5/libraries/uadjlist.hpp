@@ -21,7 +21,7 @@ public:
 	friend std::ostream& operator<<(std::ostream&, const uGraph&);
 };
 
-// Graph constructor
+// uGraph constructor
 uGraph::uGraph(int s): size(s) {
 	verticies = new Vertex*[s];
 
@@ -29,10 +29,10 @@ uGraph::uGraph(int s): size(s) {
 		verticies[i] = new Vertex();
 }
 
-// Graph destructor
+// uGraph destructor
 uGraph::~uGraph() {
 	Node* n, d;
-	std::cout << "base destructor" << std::endl;
+
 	// loop through all verticies
 	for (int i=0; i < size; i++) {
 		// the destructor is set up to delete a 

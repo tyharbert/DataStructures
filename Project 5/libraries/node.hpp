@@ -27,7 +27,7 @@ public:
 // Vertex
 // contains a pointer to the first edge
 class Vertex: public Node {
-public:
+ public:
 	Vertex(): Node() {}
 	Vertex(Node* n): Node(n) {}
 	virtual ~Vertex() {}
@@ -44,6 +44,7 @@ private:
 public:
 	uEdge(Node* n, int vi): Node(n), vertex_index(vi) {}
 	virtual ~uEdge() {}
+	int get_vertex_index() { return vertex_index; }
 	virtual std::ostream& print(std::ostream& os) const { 
 		return os << "vi:" << vertex_index;
 	}
@@ -60,6 +61,7 @@ private:
 public:
 	Edge(Node* n, int vi, W w): uEdge(n, vi), weight(w) {}
 	virtual ~Edge() {}
+	W get_weight() { return weight; }
 	virtual std::ostream& print(std::ostream& os) const { 
 		return uEdge::print(os) << " w:" << weight;
 	}
