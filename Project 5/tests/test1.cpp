@@ -17,6 +17,8 @@ int main()
 
 	std::vector<int> path = g1.dijkstra(0, 3);
 
+	std::cout << g1 << std::endl;
+
 	for (int i=0; i < path.size(); i++)
 		std::cout << path[i] << " ";
 	std::cout << std::endl;
