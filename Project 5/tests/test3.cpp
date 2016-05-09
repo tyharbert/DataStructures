@@ -4,7 +4,7 @@
 
 // gets weight from distance in feet and speed
 // in miles per hour
-double get_weight(double distance, double speed);
+double get_weight(double distance, double speed, double traffic = 1);
 
 int main()
 {
@@ -25,11 +25,19 @@ int main()
 	g1.add_edge(10, 11, get_weight(295.96, 25), false);
 	g1.add_edge(11, 12, get_weight(188.34, 25), false);
 	g1.add_edge(12, 13, get_weight(990.03, 25), false);
-	g1.add_edge(13, 14, get_weight(241.36, 25), false);
-	g1.add_edge(14, 15, get_weight(265.95, 25), false);
+	g1.add_edge(13, 14, get_weight(241.36, 25));
+	g1.add_edge(14, 13, get_weight(241.36, 25, 0.25));
+	g1.add_edge(14, 15, get_weight(265.95, 25));
+	g1.add_edge(14, 15, get_weight(265.95, 25, 0.25));
 	g1.add_edge(15, 0, get_weight(923.74, 25), false);
 
 	std::vector<int> path = g1.dijkstra(0, 8);
+
+	for (int i=0; i < path.size(); i++)
+		std::cout << path[i] << " ";
+	std::cout << std::endl;
+
+	path = g1.dijkstra(8, 0);
 
 	for (int i=0; i < path.size(); i++)
 		std::cout << path[i] << " ";
@@ -40,8 +48,8 @@ int main()
 
 // gets weight from distance in feet and speed
 // in miles per hour
-double get_weight(double distance, double speed) {
+double get_weight(double distance, double speed, double traffic) {
 	distance *= 0.000189394; // convert feet to miles
 
-	return distance/speed; // time to travel
+	return distance/(speed*traffic);  // time to travel
 }
