@@ -53,6 +53,10 @@ void Graph<W>::add_edge(int v1, int v2, W weight, bool directional) {
 // this runs dijkstra's algorithm to 
 // find the shortest path from the source
 // to the destination
+
+// Adapted form ODS version to retrive 
+// shortest path to a specific destination
+// https://canvas.instructure.com/courses/995719/assignments/4287854
 template <typename W>
 std::vector<int> Graph<W>::dijkstra(int source, int dest) {
 	W* weight = new W[size];
