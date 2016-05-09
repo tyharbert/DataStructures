@@ -1,5 +1,5 @@
 // Tyler Harbert May 2016
-// These classes represent the verticies
+// These classes represent the vertices
 // and edges to be used in a Graph class
 
 #ifndef NODE_HPP
@@ -10,7 +10,7 @@
 static int temp = 0;
 
 // this class is the base class for representing 
-// both verticies and edges
+// both vertices and edges
 class Node {
 private:
 	Node* next;

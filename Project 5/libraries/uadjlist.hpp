@@ -11,7 +11,7 @@
 // this class represents an unweighted graph
 class uGraph {
 protected:
-	Vertex** verticies;
+	Vertex** vertices;
 	int size;
 
 public:
@@ -23,24 +23,24 @@ public:
 
 // uGraph constructor
 uGraph::uGraph(int s): size(s) {
-	verticies = new Vertex*[s];
+	vertices = new Vertex*[s];
 
 	for (int i=0; i < s; i++)
-		verticies[i] = new Vertex();
+		vertices[i] = new Vertex();
 }
 
 // uGraph destructor
 uGraph::~uGraph() {
 	Node* n, d;
 
-	// loop through all verticies
+	// loop through all vertices
 	for (int i=0; i < size; i++) {
 		// the destructor is set up to delete a 
 		// full chain of Node objects recursively
-		delete verticies[i];
+		delete vertices[i];
 	}
 
-	delete verticies;
+	delete vertices;
 }
 
 // add_edge
@@ -49,7 +49,7 @@ uGraph::~uGraph() {
 void uGraph::add_edge(int v1, int v2, bool directional) {
 	Node* n;
 
-	n = verticies[v1];
+	n = vertices[v1];
 
 	// get last node
 	while (n->get_next())
@@ -68,9 +68,9 @@ void uGraph::add_edge(int v1, int v2, bool directional) {
 std::ostream& operator<<(std::ostream& os, const uGraph& g) {
 	Node* n;
 
-	// loop through all verticies
+	// loop through all vertices
 	for (int i = 0; i < g.size; i++) {
-		n = g.verticies[i]; // set to vertex
+		n = g.vertices[i]; // set to vertex
 
 		// print vertex
 		os << *n << i;

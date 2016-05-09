@@ -34,7 +34,7 @@ template <typename W>
 void Graph<W>::add_edge(int v1, int v2, W weight, bool directional) {
 	Node* n;
 
-	n = verticies[v1];
+	n = vertices[v1];
 
 	// get last node
 	while (n->get_next())
@@ -80,7 +80,7 @@ std::vector<int> Graph<W>::dijkstra(int source, int dest) {
 
 		if (current == dest) break; // path to destination found
 
-		Edge<W>* e = (Edge<W>*)verticies[current]->get_next();
+		Edge<W>* e = (Edge<W>*)vertices[current]->get_next();
 
 		while (e) {
 			int vi = e->get_vertex_index();
