@@ -31,8 +31,6 @@ uGraph::uGraph(int s): size(s) {
 
 // uGraph destructor
 uGraph::~uGraph() {
-	Node* n, d;
-
 	// loop through all vertices
 	for (int i=0; i < size; i++) {
 		// the destructor is set up to delete a 
