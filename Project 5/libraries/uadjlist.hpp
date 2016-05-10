@@ -53,7 +53,7 @@ void uGraph::add_edge(int v1, int v2, bool directional) {
 	while (n->get_next())
 		n = n->get_next();
 
-	// add weighted edge if weight supplied
+	// add edge
 	n->set_next(new uEdge(nullptr, v2));
 
 	// recursively add opposite edge
