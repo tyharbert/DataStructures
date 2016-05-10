@@ -15,4 +15,4 @@ From this directory run the following command line instructions
 # Execution Instructions
 
 1. cd bin (enter the bin directory if not already there)
-2. ./driver (this test prints vectors that can be copied into Matlab)
+2. ./test1 `or` ./test2 `or` ./test3
